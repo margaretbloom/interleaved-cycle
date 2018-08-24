@@ -8,10 +8,18 @@ _start:
  mov ecx, 1000000
 
 .loop:
- TIMES T imul eax, eax
- ;lfence
- TIMES T imul edx, edx
- 
+
+%rep T/K
+
+ TIMES K imul eax, eax
+ TIMES K imul edx, edx
+
+%endrep
+
+ TIMES T-(T/K)*K imul eax, eax
+ TIMES T-(T/K)*K imul edx, edx
+
+ lfence 
 
  dec ecx
 jnz .loop
