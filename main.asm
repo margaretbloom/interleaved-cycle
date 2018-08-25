@@ -9,7 +9,7 @@ _start:
 
 .loop:
  TIMES T imul eax, eax
- ;lfence
+ lfence
  TIMES T imul edx, edx
  
 
